@@ -1,0 +1,7 @@
+---
+# handlers file for setup-gui-environment
+
+- name: FreeBSD reboot host
+  tags: gui
+  ansible.builtin.reboot:
+    msg: "Host rebooted by Ansible..."
