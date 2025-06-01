@@ -37,8 +37,3 @@
   tags: gui
   when: ansible_os_family == "FreeBSD"
   ansible.builtin.include_tasks: "{{ ansible_os_family }}-config-gui-users.yml"
-
-- name: reboot the host
-  tags: gui
-  ansible.builtin.reboot:
-    msg: "Host rebooted by Ansible..."
