@@ -1,0 +1,10 @@
+---
+# defaults file for setup-gui-environment
+
+setup_gui_environment_driver_name:
+setup_gui_environment_driver_pkg:
+
+setup_gui_environment_sysrc_driver_directive: 
+
+# user allowed to user the gui
+setup_gui_environment_user: 

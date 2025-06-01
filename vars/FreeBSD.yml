@@ -1,0 +1,7 @@
+---
+
+setup_gui_environment_pkgs:
+  - xorg
+
+setup_gui_environment_svcs:
+  - 

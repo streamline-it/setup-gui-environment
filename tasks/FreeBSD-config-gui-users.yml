@@ -1,0 +1,13 @@
+---
+- name: make sure user isn't already setup for gui use
+  tags: gui
+  register: setup_gui_environment_group_check
+  changed_when: false
+  ansible.builtin.command:
+    cmd: "id {{ setup_gui_environment_user }}"
+
+- name: ensure user is member of the video group
+  tags: gui
+  when: "'video' not in setup_gui_environment_group_check['stdout']"
+  ansible.builtin.command:
+    cmd: "pw usermod -G wheel,video -n {{ setup_gui_environment_user }}"

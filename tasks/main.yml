@@ -1,0 +1,44 @@
+---
+# tasks file for setup-gui-environment
+- name: ensure OS specific variables are defined
+  ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
+  tags: gui
+
+- name: call task to run asserts
+  ansible.builtin.include_tasks: asserts.yml
+  tags: gui
+
+- name: call tasks to ensure packages are installed
+  tags: gui
+  ansible.builtin.include_tasks: "{{ ansible_os_family }}-install-pkgs.yml"
+
+- name: call tasks to ensure driver if needed is installed
+  tags: gui
+  when:
+    - setup_gui_environment_driver_name is defined
+    - setup_gui_environment_driver_name
+  ansible.builtin.include_tasks: "{{ ansible_os_family }}-install-driver.yml"
+
+- name: call tasks to make sure os is configured for the driver
+  tags: gui
+  when:
+    - setup_gui_environment_sysrc_directive 
+  ansible.builtin.include_tasks: "{{ ansible_os_family }}-load-driver.yml"
+
+- name: call tasks to ensure driver is registered with X
+  tags: gui
+  when:
+    - setup_gui_environment_driver_name is defined
+    - setup_gui_environment_driver_name
+  ansible.builtin.debug:
+    msg: tbd
+
+- name: call task to configure users if a FreeBSD host
+  tags: gui
+  when: ansible_os_family == "FreeBSD"
+  ansible.builtin.include_tasks: "{{ ansible_os_family }}-config-gui-users.yml"
+
+- name: reboot the host
+  tags: gui
+  ansible.builtin.reboot:
+    msg: "Host rebooted by Ansible..."
