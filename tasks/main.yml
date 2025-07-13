@@ -25,14 +25,6 @@
     - setup_gui_environment_sysrc_directive 
   ansible.builtin.include_tasks: "{{ ansible_os_family }}-load-driver.yml"
 
-- name: call tasks to ensure driver is registered with X
-  tags: gui
-  when:
-    - setup_gui_environment_driver_name is defined
-    - setup_gui_environment_driver_name
-  ansible.builtin.debug:
-    msg: tbd
-
 - name: call task to configure users if a FreeBSD host
   tags: gui
   when: ansible_os_family == "FreeBSD"

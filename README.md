@@ -35,6 +35,8 @@ setup_gui_environment_sysrc_driver_directive:
   - 
 # user allowed to user the gui
 setup_gui_environment_user: 
+  - username:
+    groups:
 
 Dependencies
 ------------

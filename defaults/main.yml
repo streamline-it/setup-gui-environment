@@ -6,5 +6,10 @@ setup_gui_environment_driver_pkg:
 
 setup_gui_environment_sysrc_driver_directive: 
 
-# user allowed to user the gui
+# user allowed to user the gui, you
+# must include all group memberships 
+# here, except for vide.  This role
+# will provide that.
 setup_gui_environment_user: 
+  - username:
+    groups:

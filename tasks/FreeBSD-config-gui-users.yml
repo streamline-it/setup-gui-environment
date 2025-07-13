@@ -3,11 +3,35 @@
   tags: gui
   register: setup_gui_environment_group_check
   changed_when: false
+  loop:
+    "{{ setup_gui_environment_user }}"
   ansible.builtin.command:
-    cmd: "id {{ setup_gui_environment_user }}"
+    cmd: "id {{ item['username'] }}"
 
-- name: ensure user is member of the video group
+#
+# Multiple user 
+#
+- name: ensure user is member of the video group (multiple users)
   tags: gui
-  when: "'video' not in setup_gui_environment_group_check['stdout']"
+  debugger: on_failed
+  loop:
+    "{{ setup_gui_environment_user }}"
+  loop_control:
+    index_var: setup_gui_environment_loop_index
+  when: 
+    - setup_gui_environment_user | length > 1
+    - "'video' not in setup_gui_environment_group_check['results'][setup_gui_environment_loop_index]['stdout']"
   ansible.builtin.command:
-    cmd: "pw usermod -G wheel,video -n {{ setup_gui_environment_user }}"
+    cmd: "pw usermod -G {{ item['groups'] }},video -n {{ item['username'] }}"
+
+#
+# Single user 
+#
+- name: ensure user is member of the video group (single user)
+  tags: gui
+  debugger: on_failed
+  when: 
+    - setup_gui_environment_user | length == 1
+    - "'video' not in setup_gui_environment_group_check['results'][0]['stdout']"
+  ansible.builtin.command:
+    cmd: "pw usermod -G {{ item['groups'] }},video -n {{ item['username'] }}"
