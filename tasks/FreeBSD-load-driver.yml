@@ -1,6 +1,5 @@
 ---
 - name: load the driver in rc.conf
-  tags: gui
   notify: FreeBSD reboot host
   loop:
     "{{ setup_gui_environment_sysrc_directive }}"
@@ -10,7 +9,6 @@
     delim: " "
 
 - name: load the driver in the loader.conf
-  tags: gui
   notify: FreeBSD reboot host
   ansible.builtin.lineinfile:
     path: /boot/loader.conf

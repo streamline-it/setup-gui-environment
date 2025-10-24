@@ -1,6 +1,5 @@
 ---
 - name: ensure following variables are defined for FreeBSD hosts
-  tags: gui
   when: ansible_os_family == "FreeBSD"
   ansible.builtin.assert:
     that:

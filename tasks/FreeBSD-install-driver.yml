@@ -1,6 +1,5 @@
 ---
 - name: ensure driver is installed
-  tags: gui
   notify: FreeBSD reboot host
   ansible.builtin.pkgng:
     name: "{{ setup_gui_environment_driver_pkg }}"
