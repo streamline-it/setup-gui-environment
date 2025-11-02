@@ -20,7 +20,7 @@
     - setup_gui_environment_user | length > 1
     - "'video' not in setup_gui_environment_group_check['results'][setup_gui_environment_loop_index]['stdout']"
   ansible.builtin.command:
-    cmd: "pw usermod -G {{ item['groups'] }},video -n {{ item['username'] }}"
+    cmd: "pw groupmod -n video -m {{ item['username'] }}"
 
 #
 # Single user 
@@ -31,4 +31,4 @@
     - setup_gui_environment_user | length == 1
     - "'video' not in setup_gui_environment_group_check['results'][0]['stdout']"
   ansible.builtin.command:
-    cmd: "pw usermod -G {{ setup_gui_environment_user[0]['groups'] }},video -n {{ setup_gui_environment_user[0]['username'] }}"
+    cmd: "pw groupmod -n video -m {{ setup_gui_environment_user[0]['username'] }}"
