@@ -38,6 +38,22 @@ setup_gui_environment_user:
   - username:
     groups:
 
+# vars files
+
+RedHat file:
+
+setup_gui_environment_pkgs:
+  - "@GNOME
+
+FreeBSD file:
+
+setup_gui_environment_pkgs:
+  - xorg
+
+setup_gui_environment_svcs:
+  -
+
+
 Dependencies
 ------------
 

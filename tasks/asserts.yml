@@ -4,6 +4,13 @@
   ansible.builtin.assert:
     that:
       - setup_gui_environment_sysrc_directive is defined
+      - setup_gui_environment_sysrc_directive is truthy
       - setup_gui_environment_driver_name is defined
+      - setup_gui_environment_driver_name is truthy
       - setup_gui_environment_driver_pkg is defined
+      - setup_gui_environment_driver_pkg is truthy
       - setup_gui_environment_user is defined
+      - setup_gui_environment_user is truthy
+      - setup_gui_environment_pkgs is defined
+      - setup_gui_environment_pkgs is truthy
+    fail_msg: "Make sure key variables are defined and have values"
