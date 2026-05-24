@@ -5,6 +5,8 @@ setup_gui_environment_driver_name:
 setup_gui_environment_driver_pkg:
 
 setup_gui_environment_sysrc_driver_directive: 
+  - name:
+    value:
 
 # user allowed to user the gui, you
 # must include all group memberships 

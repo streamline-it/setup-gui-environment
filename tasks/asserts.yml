@@ -3,8 +3,8 @@
   when: ansible_os_family == "FreeBSD"
   ansible.builtin.assert:
     that:
-      - setup_gui_environment_sysrc_directive is defined
-      - setup_gui_environment_sysrc_directive is truthy
+      - setup_gui_environment_sysrc_driver_directive is defined
+      - setup_gui_environment_sysrc_driver_directive is truthy
       - setup_gui_environment_driver_name is defined
       - setup_gui_environment_driver_name is truthy
       - setup_gui_environment_driver_pkg is defined

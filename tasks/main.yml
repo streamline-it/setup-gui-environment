@@ -17,7 +17,7 @@
 
 - name: call tasks to make sure os is configured for the driver
   when:
-    - setup_gui_environment_sysrc_directive 
+    - setup_gui_environment_sysrc_directive is defined
   ansible.builtin.include_tasks: "{{ ansible_os_family }}-load-driver.yml"
 
 - name: call task to configure users if a FreeBSD host

@@ -32,7 +32,9 @@ setup_gui_environment_driver_pkg:
 #  - name: kld_list
 #    value: "{{ setup_gui_environment_driver_name }}"
 setup_gui_environment_sysrc_driver_directive: 
-  - 
+  - name:
+    value
+
 # user allowed to user the gui
 setup_gui_environment_user: 
   - username:
@@ -50,7 +52,10 @@ Example Playbook
 Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
 
     - hosts: servers
+      become: true
+
       vars:
+
         setup_gui_environment_driver_pkg: drm-kmod
 
         setup_gui_environment_driver_name: radeonkms
@@ -60,6 +65,7 @@ Including an example of how to use your role (for instance, with variables passe
             value: "{{ setup_gui_environment_driver_name }}"
  
       roles:
+
         - name: setup-gui-environment 
 
 License
