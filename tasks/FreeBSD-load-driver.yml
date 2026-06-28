@@ -1,5 +1,5 @@
 ---
-- name: load the driver in rc.conf
+- name: add the driver in rc.conf
   notify: FreeBSD reboot host
   loop:
     "{{ setup_gui_environment_sysrc_directive }}"
